@@ -19,6 +19,8 @@ cards:
         icon_color: |-
           {% if is_state('light.kontor','on') %}
             orange
+          {% else %}
+            grey
           {% endif %}
       - type: custom:mushroom-template-card
         primary: Stuen
@@ -35,6 +37,8 @@ cards:
         icon_color: |-
           {% if is_state('light.skrivebord','on') %}
             orange
+          {% else %}
+            grey
           {% endif %}
   - type: horizontal-stack
     cards:
@@ -52,6 +56,8 @@ cards:
         icon_color: |-
           {% if is_state('light.lys_sovevaerelse','on') %}
             orange
+          {% else %}
+            grey
           {% endif %}
       - type: custom:mushroom-template-card
         primary: Bryggers
@@ -67,6 +73,8 @@ cards:
         icon_color: |-
           {% if is_state('light.bryggers_loft','on') %}
             orange
+          {% else %}
+            grey
           {% endif %}
   - type: horizontal-stack
     cards:
@@ -81,7 +89,7 @@ cards:
         entity: ''
         hold_action:
           action: toggle
-        icon_color: ''
+        icon_color: grey
       - type: custom:mushroom-template-card
         primary: Ovenpå
         secondary: '{{states(''sensor.ovenpa_temperature'')}}°C'
@@ -93,7 +101,7 @@ cards:
         tap_action:
           action: navigate
           navigation_path: ovenpa
-        icon_color: ''
+        icon_color: grey
   - type: horizontal-stack
     cards:
       - type: custom:mushroom-template-card
@@ -111,6 +119,8 @@ cards:
         icon_color: |-
           {% if is_state('light.terrasse','on') %}
             orange
+          {% else %}
+            grey
           {% endif %}
       - type: custom:mushroom-template-card
         primary: Fordøren
@@ -126,6 +136,8 @@ cards:
         icon_color: |-
           {% if is_state('light.fordoren','on') %}
             orange
+          {% else %}
+            grey
           {% endif %}
   - type: horizontal-stack
     cards:
@@ -143,4 +155,6 @@ cards:
         icon_color: |-
           {% if is_state('light.vaerksted','on') %}
             orange
+          {% else %}
+            grey
           {% endif %}
