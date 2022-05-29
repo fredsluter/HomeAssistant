@@ -24,33 +24,27 @@ primary: |-
   {% endif %}
 {% endif %}
 secondary: |-
-  {% set tomning2 = [
-        int(states("sensor.renoweb_plast_papir")) ,
-        int(states("sensor.renoweb_glas_metal")),
-        int(states("sensor.renoweb_pap_240_l_villa"))
-        ] %}
+{% set tomning2 = [
+      int(states("sensor.renoweb_plast_papir")) ,
+      int(states("sensor.renoweb_glas_metal")),
+      int(states("sensor.renoweb_pap_240_l_villa"))
+      ] %}
 
-  {% set mmn = (tomning2 | min) %}
+{% set mmn = (tomning2 | min) %}
 
-  {% set tomning2 = [
-        states.sensor.renoweb_plast_papir ,
-        states.sensor.renoweb_glas_metal ,
-        states.sensor.renoweb_pap_240_l_villa
-        ] %}
+{% set papir = tomning2[0] %}
+{% set glas = tomning2[1] %}
+{% set pap = tomning2[2] %}
 
-  {% set papir = int(states("sensor.renoweb_plast_papir")) %}
-  {% set glas = int(states("sensor.renoweb_glas_metal")) %}
-  {% set pap = int(states("sensor.renoweb_pap_240_l_villa")) %}
+{% if mmn < 1 %}
 
-  {% if mmn < 1 %}
-
-  {% elif mmn >= 1%}
-    {% if (papir <= mmn) %}
+{% elif mmn >= 1%}
+  {% if (papir <= mmn) %}
     {{state_attr("sensor.renoweb_plast_papir","formatted_state_dk")}}
-    {% elif (glas <= mmn) %}
+  {% elif (glas <= mmn) %}
     {{state_attr("sensor.renoweb_glas_metal","formatted_state_dk")}}
-    {% else %}
+  {% else %}
     {{state_attr("sensor.renoweb_pap_240_l_villa","formatted_state_dk")}}
-    {% endif %}
   {% endif %}
+{% endif %}
 icon: mdi:trash-can
