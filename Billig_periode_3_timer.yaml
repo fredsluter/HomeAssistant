@@ -1,0 +1,433 @@
+type: horizontal-stack
+cards:
+  - type: custom:mushroom-template-card
+    primary: >2-
+        {% set start_time = now().hour %}
+        {% set minpris = 1000 %}
+        {% set price = state_attr('sensor.elpriser_raw', 'records') %}
+
+        {% set p01 = namespace(value=100) %}
+        {% set p02 = namespace(value=100) %}
+        {% set p03 = namespace(value=100) %}
+        {% set p04 = namespace(value=100) %}
+        {% set p05 = namespace(value=100) %}
+        {% set p06 = namespace(value=100) %}
+        {% set p07 = namespace(value=100) %}
+        {% set p08 = namespace(value=100) %}
+        {% set p09 = namespace(value=100) %}
+        {% set p10 = namespace(value=100) %}
+        {% set p11 = namespace(value=100) %}
+        {% set p12 = namespace(value=100) %}
+        {% set p13 = namespace(value=100) %}
+        {% set p14 = namespace(value=100) %}
+        {% set p15 = namespace(value=100) %}
+        {% set p16 = namespace(value=100) %}
+        {% set p17 = namespace(value=100) %}
+        {% set p18 = namespace(value=100) %}
+        {% set p19 = namespace(value=100) %}
+        {% set p20 = namespace(value=100) %}
+        {% set p21 = namespace(value=100) %}
+        {% set p22 = namespace(value=100) %}
+        {% set p23 = namespace(value=100) %}
+        {% set p24 = namespace(value=100) %}
+
+        {% set p01.value = (price[start_time+0].TotalPriceDKK | float) + (price[start_time+1].TotalPriceDKK | float) + (price[start_time+2].TotalPriceDKK | float) %}
+        {% set p02.value = (price[start_time+1].TotalPriceDKK | float) + (price[start_time+2].TotalPriceDKK | float) + (price[start_time+3].TotalPriceDKK | float) %}
+        {% set p03.value = (price[start_time+2].TotalPriceDKK | float) + (price[start_time+3].TotalPriceDKK | float) + (price[start_time+4].TotalPriceDKK | float) %}
+        {% set p04.value = (price[start_time+3].TotalPriceDKK | float) + (price[start_time+4].TotalPriceDKK | float) + (price[start_time+5].TotalPriceDKK | float) %}
+        {% set p05.value = (price[start_time+4].TotalPriceDKK | float) + (price[start_time+5].TotalPriceDKK | float) + (price[start_time+6].TotalPriceDKK | float) %}
+        {% set p06.value = (price[start_time+5].TotalPriceDKK | float) + (price[start_time+6].TotalPriceDKK | float) + (price[start_time+7].TotalPriceDKK | float) %}
+        {% set p07.value = (price[start_time+6].TotalPriceDKK | float) + (price[start_time+7].TotalPriceDKK | float) + (price[start_time+8].TotalPriceDKK | float) %}
+        {% set p08.value = (price[start_time+7].TotalPriceDKK | float) + (price[start_time+8].TotalPriceDKK | float) + (price[start_time+9].TotalPriceDKK | float) %}
+        {% set p09.value = (price[start_time+8].TotalPriceDKK | float) + (price[start_time+9].TotalPriceDKK | float) + (price[start_time+10].TotalPriceDKK | float) %}
+
+        {% if start_time < 13 or start_time > 13 %}
+          {% set p10.value = (price[start_time+9].TotalPriceDKK | float) + (price[start_time+10].TotalPriceDKK | float) + (price[start_time+11].TotalPriceDKK | float)  %}
+        {% endif %}
+
+        {% if start_time < 12 or start_time > 13 %}
+          {% set p11.value = (price[start_time+10].TotalPriceDKK | float) + (price[start_time+11].TotalPriceDKK | float) + (price[start_time+12].TotalPriceDKK | float)  %}
+        {% endif %}
+
+        {% if start_time < 11 or start_time > 13 or start_time > 13 %}
+          {% set p12.value = (price[start_time+11].TotalPriceDKK | float) + (price[start_time+12].TotalPriceDKK | float) + (price[start_time+13].TotalPriceDKK | float)  %}
+        {% endif %}
+
+        {% if start_time < 10 or start_time > 13 %}
+          {% set p13.value = (price[start_time+12].TotalPriceDKK | float) + (price[start_time+13].TotalPriceDKK | float) + (price[start_time+14].TotalPriceDKK | float)  %}
+        {% endif %}
+
+        {% if start_time < 9 or start_time > 13  %}
+          {% set p14.value = (price[start_time+13].TotalPriceDKK | float) + (price[start_time+14].TotalPriceDKK | float) + (price[start_time+15].TotalPriceDKK | float)  %}
+        {% endif %}
+
+        {% if start_time < 8 or start_time > 13 %}
+          {% set p15.value = (price[start_time+14].TotalPriceDKK | float) + (price[start_time+15].TotalPriceDKK | float) + (price[start_time+16].TotalPriceDKK | float)  %}
+        {% endif %}
+
+        {% if start_time < 7 or start_time > 13 %}
+          {% set p16.value = (price[start_time+15].TotalPriceDKK | float) + (price[start_time+16].TotalPriceDKK | float) + (price[start_time+17].TotalPriceDKK | float)  %}
+        {% endif %}
+
+        {% if start_time < 6 or start_time > 13 %}
+          {% set p17.value = (price[start_time+16].TotalPriceDKK | float) + (price[start_time+17].TotalPriceDKK | float) + (price[start_time+18].TotalPriceDKK | float)  %}
+        {% endif %}
+
+        {% if start_time < 5 or start_time > 13 %}
+          {% set p18.value = (price[start_time+17].TotalPriceDKK | float) + (price[start_time+18].TotalPriceDKK | float) + (price[start_time+19].TotalPriceDKK | float)  %}
+        {% endif %}
+
+        {% if start_time < 4 or start_time > 13 %}  
+          {% set p19.value = (price[start_time+18].TotalPriceDKK | float) + (price[start_time+19].TotalPriceDKK | float) + (price[start_time+20].TotalPriceDKK | float)  %}
+        {% endif %}
+
+        {% if start_time < 3 or start_time > 13 %}
+          {% set p20.value = (price[start_time+19].TotalPriceDKK | float) + (price[start_time+20].TotalPriceDKK | float) + (price[start_time+21].TotalPriceDKK | float)  %}
+        {% endif %}
+
+        {% if start_time < 2 or start_time > 13 %}  
+          {% set p21.value = (price[start_time+20].TotalPriceDKK | float) + (price[start_time+21].TotalPriceDKK | float) + (price[start_time+22].TotalPriceDKK | float)  %}
+        {% endif %}
+
+        {% if start_time < 1 or start_time > 13 %}  
+          {% set p22.value = (price[start_time+21].TotalPriceDKK | float) + (price[start_time+22].TotalPriceDKK | float) + (price[start_time+23].TotalPriceDKK | float)  %}
+        {% endif %}
+
+
+        {% if p1.value < minpris %}
+          {% set billig_periode = 1 %} 
+          {% set minpris = min(minpris, p1.value) %}
+        {% endif %}
+
+        {% if p2.value < minpris %}
+          {% set billig_periode = 2 %} 
+          {% set minpris = min(minpris, p2.value) %}
+        {% endif %}
+
+        {% if p3.value < minpris %}
+          {% set billig_periode = 3 %} 
+          {% set minpris = min(minpris, p3.value) %}
+        {% endif %}
+
+        {% if p4.value < minpris %}
+          {% set billig_periode = 4 %} 
+          {% set minpris = min(minpris, p4.value) %}
+        {% endif %}
+
+        {% if p5.value < minpris %}
+          {% set billig_periode = 5 %} 
+          {% set minpris = min(minpris, p5.value) %}
+        {% endif %}
+
+        {% if p6.value < minpris %}
+          {% set billig_periode = 6 %} 
+          {% set minpris = min(minpris, p6.value) %}
+        {% endif %}
+
+        {% if p7.value < minpris %}
+          {% set billig_periode = 7 %} 
+          {% set minpris = min(minpris, p7.value) %}
+        {% endif %}
+
+        {% if p8.value < minpris %}
+          {% set billig_periode = 8 %} 
+          {% set minpris = min(minpris, p8.value) %}
+        {% endif %}
+
+        {% if p9.value < minpris %}
+          {% set billig_periode = 9 %} 
+          {% set minpris = min(minpris, p9.value) %}
+        {% endif %}
+
+        {% if p10.value < minpris %}
+          {% set billig_periode = 10 %} 
+          {% set minpris = min(minpris, p10.value) %}
+        {% endif %}
+
+        {% if p11.value < minpris %}
+          {% set billig_periode = 11 %} 
+          {% set minpris = min(minpris, p11.value) %}
+        {% endif %}
+
+        {% if p12.value < minpris %}
+          {% set billig_periode = 12 %} 
+          {% set minpris = min(minpris, p12.value) %}
+        {% endif %}
+
+        {% if p13.value < minpris %}
+          {% set billig_periode = 13 %} 
+          {% set minpris = min(minpris, p13.value) %}
+        {% endif %}
+
+        {% if p14.value < minpris %}
+          {% set billig_periode = 14 %} 
+          {% set minpris = min(minpris, p14.value) %}
+        {% endif %}
+
+        {% if p15.value < minpris %}
+          {% set billig_periode = 15 %} 
+          {% set minpris = min(minpris, p15.value) %}
+        {% endif %}
+
+        {% if p16.value < minpris %}
+          {% set billig_periode = 16 %} 
+          {% set minpris = min(minpris, p16.value) %}
+        {% endif %}
+
+        {% if p17.value < minpris %}
+          {% set billig_periode = 17 %} 
+          {% set minpris = min(minpris, p17.value) %}
+        {% endif %}
+
+        {% if p18.value < minpris %}
+          {% set billig_periode = 18 %} 
+          {% set minpris = min(minpris, p18.value) %}
+        {% endif %}
+
+        {% if p19.value < minpris %}
+          {% set billig_periode = 19 %} 
+          {% set minpris = min(minpris, p19.value) %}
+        {% endif %}
+
+        {% if p20.value < minpris %}
+          {% set billig_periode = 20 %} 
+          {% set minpris = min(minpris, p20.value) %}
+        {% endif %}
+
+        {% if p21.value < minpris %}
+          {% set billig_periode = 21 %} 
+          {% set minpris = min(minpris, p21.value) %}
+        {% endif %}
+
+        {% if p22.value < minpris %}
+          {% set billig_periode = 22 %} 
+          {% set minpris = min(minpris, p22.value) %}
+        {% endif %}
+
+      {% if billig_periode < 2 %}
+
+      Billig periode: Nu
+
+      {% else %}
+        {% set ttgt = as_timestamp(price[billig_periode + start_time - 1].HourDK) %}
+        {% set tnow = as_timestamp(now()) %}
+        {% set display = start_time|int + billig_periode|int - 1%}
+        {% if display >= 24 %}
+          {% set display = display - 24 %}
+        {% endif %}
+      Billig periode: {{display}}:00 (Det er om {{(ttgt -
+      tnow)|timestamp_custom("%H:%M", false)}} )
+
+      {% endif %}
+    secondary: >+
+      {% set start_time = now().hour %}
+
+      {% set minpris = 1000 %}
+
+
+      {% set price = state_attr('sensor.elpriser_raw', 'records') %}
+
+
+      {% set p01 = namespace(value=100) %}
+      {% set p02 = namespace(value=100) %}
+      {% set p03 = namespace(value=100) %}
+      {% set p04 = namespace(value=100) %}
+      {% set p05 = namespace(value=100) %}
+      {% set p06 = namespace(value=100) %}
+      {% set p07 = namespace(value=100) %}
+      {% set p08 = namespace(value=100) %}
+      {% set p09 = namespace(value=100) %}
+      {% set p10 = namespace(value=100) %}
+      {% set p11 = namespace(value=100) %}
+      {% set p12 = namespace(value=100) %}
+      {% set p13 = namespace(value=100) %}
+      {% set p14 = namespace(value=100) %}
+      {% set p15 = namespace(value=100) %}
+      {% set p16 = namespace(value=100) %}
+      {% set p17 = namespace(value=100) %}
+      {% set p18 = namespace(value=100) %}
+      {% set p19 = namespace(value=100) %}
+      {% set p20 = namespace(value=100) %}
+      {% set p21 = namespace(value=100) %}
+      {% set p22 = namespace(value=100) %}
+      {% set p23 = namespace(value=100) %}
+      {% set p24 = namespace(value=100) %}
+
+
+      {% set p01.value = (price[start_time+0].TotalPriceDKK | float) + (price[start_time+1].TotalPriceDKK | float) + (price[start_time+2].TotalPriceDKK | float) %}
+      {% set p02.value = (price[start_time+1].TotalPriceDKK | float) + (price[start_time+2].TotalPriceDKK | float) + (price[start_time+3].TotalPriceDKK | float) %}
+      {% set p03.value = (price[start_time+2].TotalPriceDKK | float) + (price[start_time+3].TotalPriceDKK | float) + (price[start_time+4].TotalPriceDKK | float) %}
+      {% set p04.value = (price[start_time+3].TotalPriceDKK | float) + (price[start_time+4].TotalPriceDKK | float) + (price[start_time+5].TotalPriceDKK | float) %}
+      {% set p05.value = (price[start_time+4].TotalPriceDKK | float) + (price[start_time+5].TotalPriceDKK | float) + (price[start_time+6].TotalPriceDKK | float) %}
+      {% set p06.value = (price[start_time+5].TotalPriceDKK | float) + (price[start_time+6].TotalPriceDKK | float) + (price[start_time+7].TotalPriceDKK | float) %}
+      {% set p07.value = (price[start_time+6].TotalPriceDKK | float) + (price[start_time+7].TotalPriceDKK | float) + (price[start_time+8].TotalPriceDKK | float) %}
+      {% set p08.value = (price[start_time+7].TotalPriceDKK | float) + (price[start_time+8].TotalPriceDKK | float) + (price[start_time+9].TotalPriceDKK | float) %}
+      {% set p09.value = (price[start_time+8].TotalPriceDKK | float) + (price[start_time+9].TotalPriceDKK | float) + (price[start_time+10].TotalPriceDKK | float) %}
+
+      {% if start_time < 13 or start_time > 13 %}
+        {% set p10.value = (price[start_time+9].TotalPriceDKK | float) + (price[start_time+10].TotalPriceDKK | float) + (price[start_time+11].TotalPriceDKK | float)  %}
+      {% endif %}
+
+      {% if start_time < 12 or start_time > 13 %}
+        {% set p11.value = (price[start_time+10].TotalPriceDKK | float) + (price[start_time+11].TotalPriceDKK | float) + (price[start_time+12].TotalPriceDKK | float)  %}
+      {% endif %}
+
+      {% if start_time < 11 or start_time > 13 %}
+        {% set p12.value = (price[start_time+11].TotalPriceDKK | float) + (price[start_time+12].TotalPriceDKK | float) + (price[start_time+13].TotalPriceDKK | float)  %}
+      {% endif %}
+
+      {% if start_time < 10 or start_time > 13 %}
+        {% set p13.value = (price[start_time+12].TotalPriceDKK | float) + (price[start_time+13].TotalPriceDKK | float) + (price[start_time+14].TotalPriceDKK | float)  %}
+      {% endif %}
+
+      {% if start_time < 9 or start_time > 13 %}
+        {% set p14.value = (price[start_time+13].TotalPriceDKK | float) + (price[start_time+14].TotalPriceDKK | float) + (price[start_time+15].TotalPriceDKK | float)  %}
+      {% endif %}
+
+      {% if start_time < 8 or start_time > 13 %}
+        {% set p15.value = (price[start_time+14].TotalPriceDKK | float) + (price[start_time+15].TotalPriceDKK | float) + (price[start_time+16].TotalPriceDKK | float)  %}
+      {% endif %}
+
+      {% if start_time < 7 or start_time > 13 %}
+        {% set p16.value = (price[start_time+15].TotalPriceDKK | float) + (price[start_time+16].TotalPriceDKK | float) + (price[start_time+17].TotalPriceDKK | float)  %}
+      {% endif %}
+
+      {% if start_time < 6 or start_time > 13 %}
+        {% set p17.value = (price[start_time+16].TotalPriceDKK | float) + (price[start_time+17].TotalPriceDKK | float) + (price[start_time+18].TotalPriceDKK | float)  %}
+      {% endif %}
+
+      {% if start_time < 5 or start_time > 13 %}
+        {% set p18.value = (price[start_time+17].TotalPriceDKK | float) + (price[start_time+18].TotalPriceDKK | float) + (price[start_time+19].TotalPriceDKK | float)  %}
+      {% endif %}
+
+      {% if start_time < 4 or start_time > 13 %}  
+        {% set p19.value = (price[start_time+18].TotalPriceDKK | float) + (price[start_time+19].TotalPriceDKK | float) + (price[start_time+20].TotalPriceDKK | float)  %}
+      {% endif %}
+
+      {% if start_time < 3 or start_time > 13 %}
+        {% set p20.value = (price[start_time+19].TotalPriceDKK | float) + (price[start_time+20].TotalPriceDKK | float) + (price[start_time+21].TotalPriceDKK | float)  %}
+      {% endif %}
+
+      {% if start_time < 2 or start_time > 13 %}  
+        {% set p21.value = (price[start_time+20].TotalPriceDKK | float) + (price[start_time+21].TotalPriceDKK | float) + (price[start_time+22].TotalPriceDKK | float)  %}
+      {% endif %}
+
+      {% if start_time < 1 or start_time > 13 %}  
+        {% set p22.value = (price[start_time+21].TotalPriceDKK | float) + (price[start_time+22].TotalPriceDKK | float) + (price[start_time+23].TotalPriceDKK | float)  %}
+      {% endif %}
+
+      {% if p1.value < minpris %}
+        {% set billig_periode = 1 %} 
+        {% set minpris = min(minpris, p1.value) %}
+      {% endif %}
+
+      {% if p2.value < minpris %}
+        {% set billig_periode = 2 %} 
+        {% set minpris = min(minpris, p2.value) %}
+      {% endif %}
+
+      {% if p3.value < minpris %}
+        {% set billig_periode = 3 %} 
+        {% set minpris = min(minpris, p3.value) %}
+      {% endif %}
+
+      {% if p4.value < minpris %}
+        {% set billig_periode = 4 %} 
+        {% set minpris = min(minpris, p4.value) %}
+      {% endif %}
+
+      {% if p5.value < minpris %}
+        {% set billig_periode = 5 %} 
+        {% set minpris = min(minpris, p5.value) %}
+      {% endif %}
+
+      {% if p6.value < minpris %}
+        {% set billig_periode = 6 %} 
+        {% set minpris = min(minpris, p6.value) %}
+      {% endif %}
+
+      {% if p7.value < minpris %}
+        {% set billig_periode = 7 %} 
+        {% set minpris = min(minpris, p7.value) %}
+      {% endif %}
+
+      {% if p8.value < minpris %}
+        {% set billig_periode = 8 %} 
+        {% set minpris = min(minpris, p8.value) %}
+      {% endif %}
+
+      {% if p9.value < minpris %}
+        {% set billig_periode = 9 %} 
+        {% set minpris = min(minpris, p9.value) %}
+      {% endif %}
+
+      {% if p10.value < minpris %}
+        {% set billig_periode = 10 %} 
+        {% set minpris = min(minpris, p10.value) %}
+      {% endif %}
+
+      {% if p11.value < minpris %}
+        {% set billig_periode = 11 %} 
+        {% set minpris = min(minpris, p11.value) %}
+      {% endif %}
+
+      {% if p12.value < minpris %}
+        {% set billig_periode = 12 %} 
+        {% set minpris = min(minpris, p12.value) %}
+      {% endif %}
+
+      {% if p13.value < minpris %}
+        {% set billig_periode = 13 %} 
+        {% set minpris = min(minpris, p13.value) %}
+      {% endif %}
+
+      {% if p14.value < minpris %}
+        {% set billig_periode = 14 %} 
+        {% set minpris = min(minpris, p14.value) %}
+      {% endif %}
+
+      {% if p15.value < minpris %}
+        {% set billig_periode = 15 %} 
+        {% set minpris = min(minpris, p15.value) %}
+      {% endif %}
+
+      {% if p16.value < minpris %}
+        {% set billig_periode = 16 %} 
+        {% set minpris = min(minpris, p16.value) %}
+      {% endif %}
+
+      {% if p17.value < minpris %}
+        {% set billig_periode = 17 %} 
+        {% set minpris = min(minpris, p17.value) %}
+      {% endif %}
+
+      {% if p18.value < minpris %}
+        {% set billig_periode = 18 %} 
+        {% set minpris = min(minpris, p18.value) %}
+      {% endif %}
+
+      {% if p19.value < minpris %}
+        {% set billig_periode = 19 %} 
+        {% set minpris = min(minpris, p19.value) %}
+      {% endif %}
+
+      {% if p20.value < minpris %}
+        {% set billig_periode = 20 %} 
+        {% set minpris = min(minpris, p20.value) %}
+      {% endif %}
+
+      {% if p21.value < minpris %}
+        {% set billig_periode = 21 %} 
+        {% set minpris = min(minpris, p21.value) %}
+      {% endif %}
+
+      {% if p22.value < minpris %}
+        {% set billig_periode = 22 %} 
+        {% set minpris = min(minpris, p22.value) %}
+      {% endif %}
+
+      Pris (3 timer): {{ minpris | round(2) }} kr.
+
+    icon: mdi:washing-machine
+    multiline_secondary: false
+    fill_container: false
