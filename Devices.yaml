@@ -1,0 +1,246 @@
+type: horizontal-stack
+cards:
+  - type: custom:mushroom-template-card
+    primary: Lys
+    secondary: ''
+    icon: >-
+      {% set lights = [
+            states.light.bryggers_loft,
+            states.light.desk,
+            states.light.fordoren,
+            states.light.kontor_1,
+            states.light.kontor_2,
+            states.light.kontor_3,
+            states.light.skrivebord,
+            states.light.terrasse_1,
+            states.light.terrasse_2,
+            states.light.vaerksted,
+            states.light.wiz_rgbw_tunable_6bad9e,
+            states.light.wiz_rgbw_tunable_6bd6e6,
+            states.light.wiz_rgbw_tunable_6c732a,
+            ] %}
+
+      {% set nrlights = (lights | selectattr('state','eq','on') | list | count)
+      %}
+
+
+      {% if (nrlights > 0) %}
+
+      mdi:lightbulb
+
+      {% else %}
+
+      mdi:lightbulb-off
+
+      {% endif %} 
+    layout: vertical
+    icon_color: >-
+      {% set lights = [
+            states.light.bryggers_loft,
+            states.light.desk,
+            states.light.fordoren,
+            states.light.kontor_1,
+            states.light.kontor_2,
+            states.light.kontor_3,
+            states.light.skrivebord,
+            states.light.terrasse_1,
+            states.light.terrasse_2,
+            states.light.vaerksted,
+            states.light.wiz_rgbw_tunable_6bad9e,
+            states.light.wiz_rgbw_tunable_6bd6e6,
+            states.light.wiz_rgbw_tunable_6c732a,
+            ] %}
+
+      {% set nrlights = (lights | selectattr('state','eq','on') | list | count)
+      %}
+
+
+      {% if (nrlights > 0) %}
+
+      yellow
+
+      {% else %}
+
+      white
+
+      {% endif %} 
+    tap_action:
+      action: navigate
+      navigation_path: lys
+  - type: custom:mushroom-template-card
+    primary: Apparater
+    secondary: ''
+    icon: >-
+      {% set devices = [
+            states.light.computer,
+            states.light.printer,
+            states.light.oplader,
+            states.light.oplader_2,
+            states.light.kaffemaskine,
+            states.light.stuen_tv,
+            ] %}
+
+      {% set nrdevices = devices | selectattr('state','eq','on') | list | count
+      %}
+
+
+      {% if (nrdevices > 0) %}
+
+      mdi:radio
+
+      {% else %}
+
+      mdi:radio-off
+
+      {% endif %} 
+    layout: vertical
+    icon_color: >-
+      {% set devices = [
+            states.light.computer,
+            states.light.printer,
+            states.light.oplader,
+            states.light.oplader_2,
+            states.light.kaffemaskine,
+            states.light.stuen_tv,
+            ] %}
+
+      {% set nrdevices = devices | selectattr('state','eq','on') | list | count
+      %}
+
+
+      {% if (nrdevices > 0) %}
+
+      yellow
+
+      {% else %}
+
+      white
+
+      {% endif %} 
+    tap_action:
+      action: navigate
+      navigation_path: devices
+  - type: custom:mushroom-template-card
+    primary: Plante
+    secondary: ''
+    icon: mdi:flower
+    layout: vertical
+    icon_color: |-
+      {% set mois = states('sensor.guldranke_moisture')|int %}
+      {% set cond = states('sensor.guldranke_conductivity')|int %}
+      {% set temp = states('sensor.guldranke_temperature')|int %}
+
+      {% if temp < 10 or temp > 32 %}
+      {% set warn1 = 2 %}
+      {% elif temp >= 10 and temp <= 15 %}
+      {% set warn1 = 1 %}
+      {% elif temp >= 27 and temp <= 32 %}
+      {% set warn1 = 1 %}
+      {% elif temp > 15 and temp < 27 %}
+      {% set warn1 = 0 %}
+      {% endif %}
+
+      {% if cond < 350 or cond > 2000 %}
+      {% set warn2 = 2 %}
+      {% elif cond >= 350 and cond <= 450 %}
+      {% set warn2 = 1 %}
+      {% elif cond >= 1900 and cond <= 2000 %}
+      {% set warn2 = 1 %}
+      {% elif cond > 450 and cond < 1900 %}
+      {% set warn2 = 0 %}
+      {% endif %}
+
+      {% if mois < 15 or mois > 60 %}
+      {% set warn3 = 2 %}
+      {% elif mois >= 15 and mois <= 20 %}
+      {% set warn3 = 1 %}
+      {% elif mois >= 55 and mois <= 60 %}
+      {% set warn3 = 1 %}
+      {% elif mois > 20 and mois < 55 %}
+      {% set warn3 = 0 %}
+      {% endif %}
+
+      {% set warn = warn1 + warn2 + warn3 %}
+
+      {% if warn == 0 %}
+      green
+      {% elif warn == 1 %}
+      yellow
+      {% else %}
+      red
+      {% endif %}
+    tap_action:
+      action: navigate
+      navigation_path: plant
+  - type: custom:mushroom-template-card
+    primary: Tech
+    secondary: >-
+      {% set upd1 = states("sensor.hacs")|int %}
+
+      {% set upd2 =
+      state_attr("update.pi_hole_web_update_available","installed_version") %}
+
+      {% set upd3 =
+      state_attr("update.pi_hole_web_update_available","latest_version") %}
+
+      {% if (upd3 > upd2) %}
+
+      {% set upd4 = 1 %}
+
+      {% else %}
+
+      {% set upd4 = 0 %}
+
+      {% endif %}
+
+      {% set upd5 = states("binary_sensor.docker_hub_update_available") %}
+
+
+      {% if (upd1 > 0) or (upd4 > 0) or (upd5 == 'on') %}
+
+      update!
+
+      {% else %}
+
+      {% endif %}
+    icon: mdi:server
+    layout: vertical
+    icon_color: >-
+      {{states("sensor.hacs")|int}}
+
+
+      {% set upd1 = states("sensor.hacs")|int %}
+
+      {% set upd2 =
+      state_attr("update.pi_hole_web_update_available","installed_version") %}
+
+      {% set upd3 =
+      state_attr("update.pi_hole_web_update_available","latest_version") %}
+
+      {% set upd5 = states("binary_sensor.docker_hub_update_available") %}
+
+
+      {% if (upd1 > 0) or (upd2 < upd3) or (upd5 == 'on') %}
+
+      red
+
+      {% else %}
+
+      grey
+
+      {% endif %}
+    tap_action:
+      action: navigate
+      navigation_path: serverroom
+  - type: custom:mushroom-template-card
+    primary: Gæster
+    secondary: ''
+    icon: mdi:human-male-female
+    layout: vertical
+    icon_color: |-
+      {% if is_state('input_boolean.bed_occupancy','on') %}
+        red
+      {% endif %}
+    entity: input_boolean.bed_occupancy
+    tap_action:
+      action: toggle
