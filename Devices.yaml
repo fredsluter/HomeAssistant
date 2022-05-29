@@ -20,18 +20,11 @@ cards:
             states.light.wiz_rgbw_tunable_6c732a,
             ] %}
 
-      {% set nrlights = (lights | selectattr('state','eq','on') | list | count)
-      %}
-
-
+      {% set nrlights = (lights | selectattr('state','eq','on') | list | count) %}
       {% if (nrlights > 0) %}
-
-      mdi:lightbulb
-
+        mdi:lightbulb
       {% else %}
-
-      mdi:lightbulb-off
-
+        mdi:lightbulb-off
       {% endif %} 
     layout: vertical
     icon_color: >-
@@ -51,18 +44,11 @@ cards:
             states.light.wiz_rgbw_tunable_6c732a,
             ] %}
 
-      {% set nrlights = (lights | selectattr('state','eq','on') | list | count)
-      %}
-
-
+      {% set nrlights = (lights | selectattr('state','eq','on') | list | count) %}
       {% if (nrlights > 0) %}
-
-      yellow
-
+        yellow
       {% else %}
-
-      white
-
+        white
       {% endif %} 
     tap_action:
       action: navigate
@@ -80,18 +66,11 @@ cards:
             states.light.stuen_tv,
             ] %}
 
-      {% set nrdevices = devices | selectattr('state','eq','on') | list | count
-      %}
-
-
+      {% set nrdevices = devices | selectattr('state','eq','on') | list | count %}
       {% if (nrdevices > 0) %}
-
-      mdi:radio
-
+        mdi:radio
       {% else %}
-
-      mdi:radio-off
-
+        mdi:radio-off
       {% endif %} 
     layout: vertical
     icon_color: >-
@@ -104,18 +83,11 @@ cards:
             states.light.stuen_tv,
             ] %}
 
-      {% set nrdevices = devices | selectattr('state','eq','on') | list | count
-      %}
-
-
+      {% set nrdevices = devices | selectattr('state','eq','on') | list | count %}
       {% if (nrdevices > 0) %}
-
-      yellow
-
+        yellow
       {% else %}
-
-      white
-
+        white
       {% endif %} 
     tap_action:
       action: navigate
