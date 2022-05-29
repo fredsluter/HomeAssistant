@@ -1,50 +1,50 @@
 type: custom:mushroom-template-card
 primary: |-
-{% set tomning2 = [
+  {% set tomning2 = [
       int(states("sensor.renoweb_plast_papir")) ,
       int(states("sensor.renoweb_glas_metal")),
       int(states("sensor.renoweb_pap_240_l_villa"))
       ] %}
 
-{% set mmn = (tomning2 | min) %}
+  {% set mmn = (tomning2 | min) %}
 
-{% set papir = tomning2[0] %}
-{% set glas = tomning2[1] %}
-{% set pap = tomning2[2] %}
+  {% set papir = tomning2[0] %}
+  {% set glas = tomning2[1] %}
+  {% set pap = tomning2[2] %}
 
-{% if mmn < 1 %}
-  Container bliver hentet i dag
-{% elif mmn >= 1 %}
-  {% if (papir <= mmn) %}
-    {{state_attr("sensor.renoweb_plast_papir","description")}}
-  {% elif (glas <= mmn) %}
-    {{state_attr("sensor.renoweb_glas_metal","description")}}
-  {% else %}
-    {{state_attr("sensor.renoweb_pap_240_l_villa","description")}}
+  {% if mmn < 1 %}
+    Container bliver hentet i dag
+  {% elif mmn >= 1 %}
+    {% if (papir <= mmn) %}
+      {{state_attr("sensor.renoweb_plast_papir","description")}}
+    {% elif (glas <= mmn) %}
+      {{state_attr("sensor.renoweb_glas_metal","description")}}
+    {% else %}
+      {{state_attr("sensor.renoweb_pap_240_l_villa","description")}}
+    {% endif %}
   {% endif %}
-{% endif %}
 secondary: |-
-{% set tomning2 = [
+  {% set tomning2 = [
       int(states("sensor.renoweb_plast_papir")) ,
       int(states("sensor.renoweb_glas_metal")),
       int(states("sensor.renoweb_pap_240_l_villa"))
       ] %}
 
-{% set mmn = (tomning2 | min) %}
+  {% set mmn = (tomning2 | min) %}
 
-{% set papir = tomning2[0] %}
-{% set glas = tomning2[1] %}
-{% set pap = tomning2[2] %}
+  {% set papir = tomning2[0] %}
+  {% set glas = tomning2[1] %}
+  {% set pap = tomning2[2] %}
 
-{% if mmn < 1 %}
+  {% if mmn < 1 %}
 
-{% elif mmn >= 1%}
-  {% if (papir <= mmn) %}
-    {{state_attr("sensor.renoweb_plast_papir","formatted_state_dk")}}
-  {% elif (glas <= mmn) %}
-    {{state_attr("sensor.renoweb_glas_metal","formatted_state_dk")}}
-  {% else %}
-    {{state_attr("sensor.renoweb_pap_240_l_villa","formatted_state_dk")}}
+  {% elif mmn >= 1%}
+    {% if (papir <= mmn) %}
+      {{state_attr("sensor.renoweb_plast_papir","formatted_state_dk")}}
+    {% elif (glas <= mmn) %}
+      {{state_attr("sensor.renoweb_glas_metal","formatted_state_dk")}}
+    {% else %}
+      {{state_attr("sensor.renoweb_pap_240_l_villa","formatted_state_dk")}}
+    {% endif %}
   {% endif %}
-{% endif %}
 icon: mdi:trash-can
