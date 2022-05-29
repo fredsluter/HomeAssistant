@@ -1,0 +1,55 @@
+type: vertical-stack
+cards:
+  - type: custom:mushroom-title-card
+    title: ''
+    subtitle: Scener
+  - type: horizontal-stack
+    cards:
+      - type: custom:mushroom-template-card
+        primary: Arbejde
+        secondary: ''
+        icon: mdi:chair-rolling
+        layout: vertical
+        tap_action:
+          action: call-service
+          service: scene.turn_on
+          service_data:
+            transition: 2
+          target:
+            entity_id: scene.kontor_arbejdslys
+      - type: custom:mushroom-template-card
+        primary: Relax
+        secondary: ''
+        icon: mdi:book-open-page-variant
+        layout: vertical
+        tap_action:
+          action: call-service
+          service: scene.turn_on
+          service_data:
+            transition: 2
+          target:
+            entity_id: scene.kontor_afslapning
+      - type: custom:mushroom-template-card
+        primary: Sove
+        secondary: ''
+        icon: mdi:bed
+        layout: vertical
+        tap_action:
+          action: call-service
+          service: scene.turn_on
+          service_data:
+            transition: 2
+          target:
+            entity_id: scene.kontor_sove
+      - type: custom:mushroom-template-card
+        primary: Sluk
+        secondary: ''
+        icon: mdi:lightbulb-off
+        layout: vertical
+        tap_action:
+          action: call-service
+          service: scene.turn_on
+          service_data:
+            transition: 10
+          target:
+            entity_id: scene.kontor_lyset_slukket

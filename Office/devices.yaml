@@ -1,0 +1,88 @@
+type: vertical-stack
+cards:
+  - type: custom:mushroom-title-card
+    title: ''
+    subtitle: Devices
+  - type: horizontal-stack
+    cards:
+      - type: custom:mushroom-template-card
+        primary: Printer
+        secondary: '{{state_attr("sensor.hp_laser_mfp_135w","friendly_name")}}'
+        icon: '{{state_attr("sensor.hp_printer_status","icon")}}'
+        layout: vertical
+        entity: light.printer
+        icon_color: |-
+          {% if is_state("light.printer","on") %}
+            green
+          {% elif is_state("light.printer","off") %}
+            grey
+          {% endif %}
+        multiline_secondary: false
+      - type: custom:mushroom-template-card
+        primary: Computer
+        secondary: '{{states("light.computer")}}'
+        icon: |-
+          {% if is_state("light.computer","on") %}
+            mdi:laptop
+          {% elif is_state("light.computer","off") %}
+            mdi:laptop-off
+          {% endif %}
+        layout: vertical
+        entity: light.computer
+        fill_container: false
+        icon_color: |-
+          {% if is_state("light.computer","on") %}
+            green
+          {% elif is_state("light.computer","off") %}
+            grey
+          {% endif %}
+      - type: custom:mushroom-template-card
+        primary: Oplader
+        secondary: '{{states("light.oplader_2")}}'
+        icon: |-
+          {% if is_state("light.oplader_2","on") %}
+            mdi:battery-charging
+          {% elif is_state("light.oplader_2","off") %}
+            mdi:battery-off
+          {% endif %}
+        layout: vertical
+        entity: light.oplader_2
+        icon_color: |-
+          {% if is_state("light.oplader_2","on") %}
+            green
+          {% elif is_state("light.oplader_2","off") %}
+            grey
+          {% endif %}
+      - type: custom:mushroom-template-card
+        primary: iPad batteri
+        secondary: |-
+          {{states("sensor.fred_s_ipad_battery_state")}}
+          ({{states("sensor.fred_s_ipad_battery_level")}} %)
+        icon: '{{state_attr("sensor.fred_s_ipad_battery_state","icon")}}'
+        layout: vertical
+        entity: sensor.iphone_frsl_battery_level
+        icon_color: |
+          {% set level = states("sensor.fred_s_ipad_battery_level")|float %}
+
+          {% if (level > 50) %}
+            green
+          {% elif (level > 25) %}
+            yellow
+          {% else %}
+            red
+          {% endif %}
+        multiline_secondary: true
+        tap_action:
+          action: more-info
+  - type: custom:mushroom-media-player-card
+    entity: media_player.kontor_speaker
+    volume_controls:
+      - volume_mute
+      - volume_set
+    media_controls:
+      - next
+      - play_pause_stop
+      - on_off
+    use_media_info: true
+    use_media_artwork: true
+    fill_container: false

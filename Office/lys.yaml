@@ -1,0 +1,42 @@
+type: vertical-stack
+cards:
+  - type: custom:mushroom-title-card
+    title: ''
+    subtitle: Lys
+  - type: horizontal-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-light-card
+            entity: light.kontor_1
+            name: Lys 1
+            layout: vertical
+            use_light_color: true
+            fill_container: false
+            show_brightness_control: true
+            collapsible_controls: true
+            hide_state: true
+          - type: custom:mushroom-light-card
+            entity: light.kontor_2
+            name: Lys 2
+            layout: vertical
+            show_brightness_control: true
+            use_light_color: true
+            collapsible_controls: true
+            hide_state: true
+          - type: custom:mushroom-light-card
+            entity: light.kontor_3
+            name: Lys 3
+            layout: vertical
+            use_light_color: true
+            show_brightness_control: true
+            collapsible_controls: true
+            hide_state: true
+          - type: custom:mushroom-light-card
+            entity: light.desk
+            name: Desk
+            layout: vertical
+            use_light_color: true
+            show_brightness_control: false
+            collapsible_controls: true
+            hide_state: true

@@ -1,0 +1,47 @@
+type: vertical-stack
+cards:
+  - type: custom:mushroom-title-card
+    title: ''
+    subtitle: Tavlemøde
+  - type: horizontal-stack
+    cards:
+      - show_name: true
+        show_icon: true
+        type: button
+        tap_action:
+          action: call-service
+          service: scene.turn_on
+          service_data:
+            transition: 2
+          target:
+            entity_id: scene.tavlemode_gron
+        entity: light.kontor_1
+        name: Grøn
+        icon: mdi:thumb-up
+        show_state: false
+      - show_name: true
+        show_icon: true
+        type: button
+        tap_action:
+          action: call-service
+          service: scene.turn_on
+          service_data:
+            transition: 2
+          target:
+            entity_id: scene.tavlemode_gul
+        entity: light.kontor_1
+        name: Gul
+        icon: mdi:thumbs-up-down
+      - show_name: true
+        show_icon: true
+        type: button
+        tap_action:
+          action: call-service
+          service: scene.turn_on
+          service_data:
+            transition: 2
+          target:
+            entity_id: scene.tavlemode_rod
+        entity: light.kontor_1
+        name: Rød
+        icon: mdi:thumb-down
