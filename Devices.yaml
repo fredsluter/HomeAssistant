@@ -103,43 +103,43 @@ cards:
       {% set temp = states('sensor.guldranke_temperature')|int %}
 
       {% if temp < 10 or temp > 32 %}
-      {% set warn1 = 2 %}
+        {% set warn1 = 2 %}
       {% elif temp >= 10 and temp <= 15 %}
-      {% set warn1 = 1 %}
+        {% set warn1 = 1 %}
       {% elif temp >= 27 and temp <= 32 %}
-      {% set warn1 = 1 %}
+        {% set warn1 = 1 %}
       {% elif temp > 15 and temp < 27 %}
-      {% set warn1 = 0 %}
+        {% set warn1 = 0 %}
       {% endif %}
 
       {% if cond < 350 or cond > 2000 %}
-      {% set warn2 = 2 %}
+        {% set warn2 = 2 %}
       {% elif cond >= 350 and cond <= 450 %}
-      {% set warn2 = 1 %}
+        {% set warn2 = 1 %}
       {% elif cond >= 1900 and cond <= 2000 %}
-      {% set warn2 = 1 %}
+        {% set warn2 = 1 %}
       {% elif cond > 450 and cond < 1900 %}
-      {% set warn2 = 0 %}
+        {% set warn2 = 0 %}
       {% endif %}
 
       {% if mois < 15 or mois > 60 %}
-      {% set warn3 = 2 %}
+        {% set warn3 = 2 %}
       {% elif mois >= 15 and mois <= 20 %}
-      {% set warn3 = 1 %}
+        {% set warn3 = 1 %}
       {% elif mois >= 55 and mois <= 60 %}
-      {% set warn3 = 1 %}
+        {% set warn3 = 1 %}
       {% elif mois > 20 and mois < 55 %}
-      {% set warn3 = 0 %}
+        {% set warn3 = 0 %}
       {% endif %}
 
       {% set warn = warn1 + warn2 + warn3 %}
 
       {% if warn == 0 %}
-      green
+        green
       {% elif warn == 1 %}
-      yellow
+        yellow
       {% else %}
-      red
+        red
       {% endif %}
     tap_action:
       action: navigate
@@ -148,58 +148,32 @@ cards:
     primary: Tech
     secondary: >-
       {% set upd1 = states("sensor.hacs")|int %}
-
-      {% set upd2 =
-      state_attr("update.pi_hole_web_update_available","installed_version") %}
-
-      {% set upd3 =
-      state_attr("update.pi_hole_web_update_available","latest_version") %}
+      {% set upd2 = state_attr("update.pi_hole_web_update_available","installed_version") %}
+      {% set upd3 = state_attr("update.pi_hole_web_update_available","latest_version") %}
 
       {% if (upd3 > upd2) %}
-
-      {% set upd4 = 1 %}
-
+        {% set upd4 = 1 %}
       {% else %}
-
-      {% set upd4 = 0 %}
-
+        {% set upd4 = 0 %}
       {% endif %}
-
       {% set upd5 = states("binary_sensor.docker_hub_update_available") %}
-
-
       {% if (upd1 > 0) or (upd4 > 0) or (upd5 == 'on') %}
-
-      update!
-
-      {% else %}
-
+        update!
       {% endif %}
     icon: mdi:server
     layout: vertical
     icon_color: >-
       {{states("sensor.hacs")|int}}
 
-
       {% set upd1 = states("sensor.hacs")|int %}
-
-      {% set upd2 =
-      state_attr("update.pi_hole_web_update_available","installed_version") %}
-
-      {% set upd3 =
-      state_attr("update.pi_hole_web_update_available","latest_version") %}
-
+      {% set upd2 = state_attr("update.pi_hole_web_update_available","installed_version") %}
+      {% set upd3 = state_attr("update.pi_hole_web_update_available","latest_version") %}
       {% set upd5 = states("binary_sensor.docker_hub_update_available") %}
 
-
       {% if (upd1 > 0) or (upd2 < upd3) or (upd5 == 'on') %}
-
-      red
-
+        red
       {% else %}
-
-      grey
-
+        grey
       {% endif %}
     tap_action:
       action: navigate
