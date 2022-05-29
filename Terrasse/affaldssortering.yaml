@@ -1,0 +1,31 @@
+type: vertical-stack
+cards:
+  - type: custom:mushroom-title-card
+    title: ''
+    subtitle: Affaldssortering
+  - type: horizontal-stack
+    cards:
+      - type: custom:mushroom-template-card
+        primary: >-
+          {{states("sensor.renoweb_plast_papir")}}
+          {{state_attr("sensor.renoweb_plast_papir","unit_of_measurement")}} 
+        secondary: '{{state_attr("sensor.renoweb_plast_papir","friendly_name")}}'
+        icon: mdi:trash-can
+        layout: vertical
+        entity: sensor.renoweb_plast_papir
+      - type: custom:mushroom-template-card
+        primary: >-
+          {{states("sensor.renoweb_pap_240_l_villa")}}
+          {{state_attr("sensor.renoweb_pap_240_l_villa","unit_of_measurement")}} 
+        secondary: '{{state_attr("sensor.renoweb_pap_240_l_villa","friendly_name")}}'
+        icon: mdi:trash-can
+        layout: vertical
+        entity: sensor.renoweb_pap_240_l_villa
+      - type: custom:mushroom-template-card
+        primary: >-
+          {{states("sensor.renoweb_glas_metal")}}
+          {{state_attr("sensor.renoweb_glas_metal","unit_of_measurement")}} 
+        secondary: '{{state_attr("sensor.renoweb_glas_metal","friendly_name")}}'
+        icon: mdi:trash-can
+        layout: vertical
+        entity: sensor.renoweb_glas_metal

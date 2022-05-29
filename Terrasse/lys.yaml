@@ -1,0 +1,13 @@
+type: vertical-stack
+cards:
+  - type: custom:mushroom-title-card
+    title: ''
+    subtitle: Lys
+  - type: horizontal-stack
+    cards:
+      - type: custom:mushroom-entity-card
+        entity: light.terrasse_1
+        layout: vertical
+      - type: custom:mushroom-entity-card
+        entity: light.terrasse_2
+        layout: vertical

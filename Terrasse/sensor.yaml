@@ -1,0 +1,20 @@
+type: vertical-stack
+cards:
+  - type: custom:mushroom-title-card
+    title: ''
+    subtitle: Sensor
+  - type: weather-forecast
+    entity: weather.dalbovej
+  - type: horizontal-stack
+    cards:
+      - type: custom:mushroom-entity-card
+        entity: sensor.netatmo_dalbovej_stuen_outdoor_module_battery_percent
+        name: Batteri
+      - type: custom:mushroom-entity-card
+        entity: sensor.netatmo_dalbovej_stuen_pressure
+        name: Lufttryk
+  - type: custom:mushroom-entity-card
+    entity: binary_sensor.sensor_terrasse_motion
+    primary_info: last-changed
+    name: Bevægelse
+    layout: vertical

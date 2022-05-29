@@ -1,0 +1,71 @@
+type: vertical-stack
+cards:
+  - type: custom:mushroom-title-card
+    title: ''
+    subtitle: Devices
+  - type: horizontal-stack
+    cards:
+      - type: custom:mushroom-template-card
+        primary: Skrivebord
+        secondary: '{{states("light.skrivebord")}}'
+        icon: |-
+          {% if is_state("light.skrivebord","on") %}
+            mdi:desk-lamp
+          {% elif is_state("light.skrivebord","off") %}
+            mdi:lightbulb-off
+          {% endif %}
+        layout: vertical
+        entity: light.skrivebord
+        fill_container: false
+        icon_color: |-
+          {% if is_state("light.skrivebord","on") %}
+            orange
+          {% elif is_state("light.skrivebord","off") %}
+            grey
+          {% endif %}
+        tap_action:
+          action: toggle
+      - type: custom:mushroom-template-card
+        primary: TV
+        secondary: '{{states("light.stuen_tv")}}'
+        icon: |-
+          {% if is_state("light.stuen_tv","on") %}
+            mdi:television
+          {% elif is_state("light.stuen_tv","off") %}
+            mdi:television-off
+          {% endif %}
+        layout: vertical
+        entity: light.stuen_tv
+        fill_container: false
+        icon_color: |-
+          {% if is_state("light.stuen_tv","on") %}
+            green
+          {% elif is_state("light.stuen_tv","off") %}
+            grey
+          {% endif %}
+        tap_action:
+          action: toggle
+      - type: custom:mushroom-template-card
+        primary: Kaffemaskine
+        secondary: '{{states("light.kaffemaskine")}}'
+        icon: |-
+          {% if is_state("light.kaffemaskine","on") %}
+            mdi:coffee
+          {% elif is_state("light.kaffemaskine","off") %}
+            mdi:coffee-off
+          {% endif %}
+        layout: vertical
+        entity: light.kaffemaskine
+        fill_container: false
+        icon_color: |-
+          {% if is_state("light.kaffemaskine","on") %}
+            green
+          {% elif is_state("light.kaffemaskine","off") %}
+            grey
+          {% endif %}
+        tap_action:
+          action: toggle
+  - type: custom:mushroom-media-player-card
+    entity: media_player.stuen_wifi
+  - type: media-control
+    entity: media_player.stuen
