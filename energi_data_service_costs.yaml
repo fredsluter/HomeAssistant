@@ -1,0 +1,36 @@
+{% set costs = {
+  "elafgift": 0.7230,
+  "nettarif_lav": 0.30032,
+  "nettarif_spids": 0.76512,
+  "abonnement_net": 0.00,
+  "eltillaeg_ellev": 0.11,
+  "abonnement_ellev": 0.00
+  } %}
+
+{% if now().month >= 10 or now().month < 4 %}
+  {% if now().hour >= 17 and now().hour < 20 %}
+{{
+  costs.elafgift +
+  costs.nettarif_spids +
+  costs.abonnement_net +
+  costs.eltillaeg_ellev +
+  costs.abonnement_ellev
+}}
+  {% else %}
+{{
+  costs.elafgift +
+  costs.nettarif_lav +
+  costs.abonnement_net +
+  costs.eltillaeg_ellev +
+  costs.abonnement_ellev
+}}
+  {% endif %}
+{% else %}
+{{
+  costs.elafgift +
+  costs.nettarif_lav +
+  costs.abonnement_net +
+  costs.eltillaeg_ellev +
+  costs.abonnement_ellev
+}}
+{% endif %}
