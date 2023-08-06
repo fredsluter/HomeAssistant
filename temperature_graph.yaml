@@ -1,0 +1,115 @@
+  ########################################
+  ##                                    ##
+  ##              TEMPERATUR-GRAF       ##
+  ##                                    ##
+  ########################################
+  - view_layout:
+      grid-area: "temp"
+    type: custom:stack-in-card
+    cards:
+      - type: grid
+        square: false
+        columns: 2
+        cards:
+          - type: custom:mushroom-entity-card
+            entity: sensor.stuen_outdoor_module_temperature
+            primary_info: state
+            secondary_info: name
+            name: Temperatur
+            icon_color: red
+            tap_action:
+              action: fire-dom-event
+              browser_mod:
+                service: browser_mod.popup
+                data:
+                  title: Seneste 24t
+                  content:
+                    type: custom:mini-graph-card
+                    entities:
+                      - entity: sensor.stuen_outdoor_module_temperature
+                        y_axis: primary
+                    icon: mdi:thermometer
+                    show:
+                      extrema: true
+                      legend: false
+                      average: true
+                      fill: fade
+                    color_thresholds:
+                      - value: -10
+                        color: "#0000ff"
+                      - value: -5
+                        color: "6666ff"
+                      - value: 0
+                        color: "#9999ff"
+                      - value: 5
+                        color: "#99ff99"
+                      - value: 10
+                        color: "#66ff66"
+                      - value: 15
+                        color: "#ff9999"
+                      - value: 20
+                        color: "#ff6666"
+                      - value: 25
+                        color: "#ff0000"
+                    name: Temperatur
+                    line_width: 2
+                    #lower_bound: 18
+                    min_bound_range: 1
+                    points_per_hour: 10
+          - type: custom:mushroom-entity-card
+            entity: sensor.stuen_outdoor_module_humidity
+            primary_info: state
+            secondary_info: name
+            name: Fugtighed
+            icon_color: blue
+            tap_action:
+              action: fire-dom-event
+              browser_mod:
+                service: browser_mod.popup
+                data:
+                  title: Seneste 24t
+                  content:
+                    type: custom:mini-graph-card
+                    entities:
+                      - entity: sensor.stuen_outdoor_module_humidity
+                        y_axis: primary
+                    icon: mdi:thermometer
+                    show:
+                      extrema: true
+                      legend: false
+                      average: true
+                      fill: fade
+                    color_thresholds:
+                      - value: 20
+                        color: "#68BBE3"
+                      - value: 40
+                        color: "#0E86D4"
+                      - value: 60
+                        color: "#055C9D"
+                      - value: 80
+                        color: "#003060"
+                    name: Luftfugtighed
+                    line_width: 2
+                    #lower_bound: 0
+                    min_bound_range: 1
+                    points_per_hour: 10
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.stuen_outdoor_module_temperature
+            name: Den seneste uge
+            color: "#FF0000"
+          - entity: sensor.stuen_outdoor_module_humidity
+            name: Fugtighed
+            color: "#2196f3"
+            y_axis: secondary
+        hours_to_show: 168
+        points_per_hour: 3
+        line_width: 2
+        font_size: 50
+        animate: true
+        show:
+          name: true
+          icon: false
+          state: false
+          legend: false
+          fill: fade
